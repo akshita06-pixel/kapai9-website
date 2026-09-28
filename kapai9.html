@@ -1,0 +1,2802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>KAPAI — Coffee House & Bistro</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --cream:#f4efe7;
+    --cream-dark:#e9dfd1;
+    --white:#fffdf9;
+    --brown:#7c5135;
+    --brown-light:#b88b67;
+    --dark:#171411;
+    --muted:#777067;
+    --line:rgba(23,20,17,.13);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"DM Sans",sans-serif;
+    background:var(--white);
+    color:var(--dark);
+}
+
+body.menu-open{
+    overflow:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 6%;
+    transition:.3s;
+    color:white;
+}
+
+nav.scrolled{
+    background:rgba(255,253,249,.94);
+    backdrop-filter:blur(18px);
+    box-shadow:0 1px 0 var(--line);
+    color:var(--dark);
+}
+
+.logo{
+    font-family:"Playfair Display",serif;
+    font-size:29px;
+    letter-spacing:.18em;
+    color:inherit;
+    text-decoration:none;
+}
+
+.nav-links{
+    display:flex;
+    gap:32px;
+    font-size:14px;
+}
+
+.nav-links a{
+    color:inherit;
+    text-decoration:none;
+    opacity:.8;
+    transition:.2s;
+}
+
+.nav-links a:hover{
+    opacity:1;
+}
+
+.nav-button{
+    text-decoration:none;
+    color:white;
+    background:var(--dark);
+    padding:11px 20px;
+    border-radius:100px;
+    font-size:13px;
+    transition:.2s;
+}
+
+.nav-button:hover{
+    transform:translateY(-2px);
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    min-height:94vh;
+    position:relative;
+    display:flex;
+    align-items:center;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(17,13,10,.84),
+            rgba(17,13,10,.38),
+            rgba(17,13,10,.12)
+        ),
+        url("https://b.zmtcdn.com/data/pictures/7/21197747/b8d6f35023fedcd6b7245b75d08572fd.jpg?fit=around%7C750%3A500&crop=750%3A500%3B%2A%2C%2A");
+    background-size:cover;
+    background-position:center;
+    color:white;
+}
+
+.hero-content{
+    width:88%;
+    max-width:1200px;
+    margin:auto;
+    padding-top:70px;
+}
+
+.kicker{
+    text-transform:uppercase;
+    letter-spacing:.28em;
+    font-size:12px;
+    margin-bottom:24px;
+    opacity:.85;
+}
+
+.hero h1{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(60px,9vw,120px);
+    line-height:.9;
+    font-weight:500;
+    max-width:900px;
+}
+
+.hero-text{
+    max-width:570px;
+    margin:30px 0;
+    font-size:18px;
+    line-height:1.6;
+    color:rgba(255,255,255,.84);
+}
+
+.buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:14px 23px;
+    border-radius:100px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+}
+
+.btn-light{
+    background:white;
+    color:var(--dark);
+}
+
+.btn-outline{
+    border:1px solid rgba(255,255,255,.55);
+    color:white;
+}
+
+/* ================= GENERAL ================= */
+
+section{
+    padding:110px 6%;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.eyebrow{
+    color:var(--brown);
+    text-transform:uppercase;
+    letter-spacing:.23em;
+    font-size:11px;
+    font-weight:700;
+}
+
+.section-title{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(40px,5vw,68px);
+    line-height:1.05;
+    margin:15px 0 22px;
+}
+
+.description{
+    max-width:650px;
+    color:var(--muted);
+    font-size:17px;
+    line-height:1.7;
+}
+
+/* ================= STORY ================= */
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+}
+
+.about-image{
+    height:610px;
+    background:
+        url("https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2000&q=95")
+        center/cover;
+    box-shadow:0 25px 60px rgba(0,0,0,.12);
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin-top:45px;
+    border-top:1px solid var(--line);
+    padding-top:28px;
+}
+
+.stat-number{
+    display:block;
+    font-family:"Playfair Display",serif;
+    font-size:35px;
+}
+
+.stat-label{
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* ================= FEATURED MENU ================= */
+
+.menu-section{
+    background:var(--cream);
+}
+
+.featured-heading{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:30px;
+}
+
+.menu-grid{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.menu-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    transition:.25s;
+}
+
+.food-card{
+    padding:0;
+    overflow:hidden;
+}
+
+.food-card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 22px 50px rgba(0,0,0,.10);
+}
+
+.food-image{
+    width:100%;
+    height:285px;
+    overflow:hidden;
+    background:var(--cream-dark);
+}
+
+.food-image img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    object-position:center;
+    transition:transform .5s ease;
+}
+
+.food-card:hover .food-image img{
+    transform:scale(1.045);
+}
+
+.food-card-content{
+    padding:25px 27px 28px;
+}
+
+.food-card h3{
+    font-family:"Playfair Display",serif;
+    margin:13px 0 18px;
+    font-size:26px;
+    line-height:1.15;
+}
+
+.menu-number{
+    color:var(--brown);
+    font-size:11px;
+    letter-spacing:.08em;
+}
+
+.food-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.menu-price{
+    font-weight:700;
+    font-size:17px;
+}
+
+.full-menu-cta{
+    margin-top:45px;
+    padding-top:35px;
+    border-top:1px solid var(--line);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:30px;
+}
+
+.full-menu-cta p{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.6;
+    max-width:550px;
+}
+
+.full-menu-button{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--dark);
+    color:white;
+    border:none;
+    border-radius:100px;
+    padding:14px 23px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.25s;
+    white-space:nowrap;
+}
+
+.full-menu-button:hover{
+    transform:translateY(-2px);
+}
+
+/* ================= DELIVERY ================= */
+
+.delivery-section{
+    background:#171411;
+    color:white;
+    padding:100px 6%;
+}
+
+.delivery-inner{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:80px;
+    align-items:center;
+}
+
+.delivery-section .section-title{
+    color:white;
+}
+
+.delivery-section .description{
+    color:rgba(255,255,255,.62);
+}
+
+.delivery-buttons{
+    display:grid;
+    gap:15px;
+}
+
+.delivery-card{
+    color:white;
+    text-decoration:none;
+    padding:27px 30px;
+    border:1px solid rgba(255,255,255,.16);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition:.25s;
+    background:rgba(255,255,255,.04);
+}
+
+.delivery-card:hover{
+    transform:translateX(6px);
+    background:rgba(255,255,255,.08);
+}
+
+.delivery-card strong{
+    display:block;
+    font-family:"Playfair Display",serif;
+    font-size:30px;
+    margin:5px 0;
+}
+
+.delivery-card small{
+    display:block;
+    color:rgba(255,255,255,.55);
+    font-size:12px;
+}
+
+.delivery-label{
+    display:block;
+    font-size:9px;
+    letter-spacing:.2em;
+    opacity:.55;
+}
+
+.delivery-arrow{
+    font-size:25px;
+}
+
+.zomato{
+    border-left:3px solid #e23744;
+}
+
+.swiggy{
+    border-left:3px solid #fc8019;
+}
+
+/* ================= REVIEWS ================= */
+
+.reviews-section{
+    background:var(--cream);
+}
+
+.reviews-grid{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+}
+
+.review-card{
+    background:var(--white);
+    border:1px solid var(--line);
+    padding:30px;
+    transition:.25s;
+}
+
+.review-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 20px 45px rgba(0,0,0,.08);
+}
+
+.review-top{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-bottom:22px;
+}
+
+.review-avatar{
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    background:var(--dark);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:"Playfair Display",serif;
+    font-size:20px;
+    flex-shrink:0;
+}
+
+.review-top h3{
+    font-family:"Playfair Display",serif;
+    font-size:20px;
+    margin-bottom:5px;
+}
+
+.review-stars{
+    color:var(--brown-light);
+    letter-spacing:2px;
+    font-size:13px;
+}
+
+.review-text{
+    color:var(--muted);
+    font-size:14px;
+    line-height:1.75;
+}
+
+/* ================= GALLERY ================= */
+
+.gallery{
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:15px;
+    margin-top:50px;
+}
+
+.gallery-main{
+    height:500px;
+    background:
+        url("https://b.zmtcdn.com/data/pictures/chains/7/21197747/4f53fda0bccfa7b275515f897904637c.jpg?crop=700%3A400%3B%2A%2C%2A&fit=around%7C700%3A400&output-format=webp")
+        center/cover;
+}
+
+.gallery-side{
+    display:grid;
+    gap:15px;
+}
+
+.gallery-small{
+    min-height:242px;
+    background-size:cover;
+    background-position:center;
+}
+
+.gallery-small.one{
+    background-image:
+        url("https://b.zmtcdn.com/data/dish_photos/770/bd9c1548a711d710cf155bb7f4c69770.jpeg?fit=around%7C800%3A800&crop=800%3A800%3B%2A%2C%2A");
+}
+
+.gallery-small.two{
+    background-image:
+        url("https://b.zmtcdn.com/data/reviews_photos/73f/1f85ee7173b1bf12da35b21db1e6673f_1718193871.jpg?fit=around%7C800%3A800&crop=800%3A800%3B%2A%2C%2A");
+}
+
+/* ================= VISIT ================= */
+
+.location-section{
+    background:var(--cream);
+    padding-top:105px;
+}
+
+.visit{
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:80px;
+    align-items:start;
+}
+
+.location-card{
+    margin-top:35px;
+    background:var(--white);
+    border:1px solid var(--line);
+    padding:28px;
+    box-shadow:0 15px 45px rgba(0,0,0,.05);
+}
+
+.location-label{
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    font-size:10px;
+    color:var(--muted);
+    margin-bottom:10px;
+}
+
+.address{
+    font-family:"Playfair Display",serif;
+    font-size:25px;
+    line-height:1.4;
+}
+
+.map-button{
+    display:inline-block;
+    margin-top:20px;
+    background:var(--dark);
+    color:white;
+    padding:12px 19px;
+    border-radius:100px;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
+}
+
+.info{
+    margin-top:20px;
+}
+
+.info-item{
+    border-top:1px solid var(--line);
+    padding:17px 0;
+}
+
+.info-item span{
+    display:block;
+    text-transform:uppercase;
+    letter-spacing:.15em;
+    font-size:10px;
+    color:var(--muted);
+    margin-bottom:4px;
+}
+
+.info-item strong{
+    font-size:14px;
+}
+
+/* ================= RESERVATION ================= */
+
+.booking{
+    background:var(--cream-dark);
+    padding:40px;
+}
+
+.booking h3{
+    font-family:"Playfair Display",serif;
+    font-size:36px;
+}
+
+.booking-subtitle{
+    color:var(--muted);
+    font-size:13px;
+    margin:5px 0 25px;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.form-group.full{
+    grid-column:1/-1;
+}
+
+.form-group label{
+    display:block;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    font-size:10px;
+    margin-bottom:6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    width:100%;
+    border:1px solid var(--line);
+    padding:13px;
+    background:white;
+    outline:none;
+    font-family:inherit;
+}
+
+.form-group textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.submit{
+    margin-top:15px;
+    width:100%;
+    border:none;
+    background:var(--dark);
+    color:white;
+    padding:15px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.success{
+    display:none;
+    margin-top:12px;
+    color:var(--brown);
+    font-size:12px;
+}
+
+/* ================= FULL MENU MODAL ================= */
+
+.menu-modal{
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    background:rgba(20,17,14,.72);
+    backdrop-filter:blur(12px);
+    display:none;
+    padding:30px;
+}
+
+.menu-modal.active{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.menu-modal-inner{
+    width:min(1100px,100%);
+    height:min(90vh,900px);
+    background:var(--white);
+    overflow:hidden;
+    box-shadow:0 30px 100px rgba(0,0,0,.3);
+    display:flex;
+    flex-direction:column;
+}
+
+.menu-modal-header{
+    padding:25px 35px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:1px solid var(--line);
+}
+
+.menu-modal-header h2{
+    font-family:"Playfair Display",serif;
+    font-size:38px;
+}
+
+.close-menu{
+    border:none;
+    background:transparent;
+    font-size:30px;
+    cursor:pointer;
+    line-height:1;
+}
+
+.menu-search{
+    padding:15px 35px;
+    border-bottom:1px solid var(--line);
+}
+
+.menu-search input{
+    width:100%;
+    border:1px solid var(--line);
+    padding:13px 16px;
+    font-family:inherit;
+    outline:none;
+    background:var(--cream);
+}
+
+.category-tabs{
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+    padding:15px 35px;
+    border-bottom:1px solid var(--line);
+}
+
+.category-tab{
+    flex-shrink:0;
+    border:1px solid var(--line);
+    background:white;
+    padding:9px 15px;
+    border-radius:100px;
+    font-size:12px;
+    cursor:pointer;
+}
+
+.category-tab.active{
+    background:var(--dark);
+    color:white;
+}
+
+.menu-content{
+    overflow-y:auto;
+    padding:35px;
+}
+
+.menu-category{
+    margin-bottom:50px;
+}
+
+.menu-category h3{
+    font-family:"Playfair Display",serif;
+    font-size:32px;
+    padding-bottom:15px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:10px;
+}
+
+.full-menu-item{
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+    padding:17px 0;
+    border-bottom:1px solid rgba(23,20,17,.08);
+}
+
+.item-info{
+    max-width:750px;
+}
+
+.item-name{
+    font-weight:700;
+    font-size:15px;
+}
+
+.item-description{
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.6;
+    margin-top:4px;
+}
+
+.item-price{
+    font-weight:700;
+    white-space:nowrap;
+}
+
+.no-results{
+    text-align:center;
+    padding:50px;
+    color:var(--muted);
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#15120f;
+    color:white;
+    padding:60px 6%;
+}
+
+.footer-inner{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.footer-logo{
+    font-family:"Playfair Display",serif;
+    font-size:34px;
+    letter-spacing:.17em;
+}
+
+.footer-description{
+    color:rgba(255,255,255,.5);
+    font-size:13px;
+    margin-top:8px;
+}
+
+.footer-links{
+    display:flex;
+    gap:25px;
+    font-size:13px;
+}
+
+.footer-links a{
+    color:white;
+    text-decoration:none;
+    opacity:.7;
+}
+
+.footer-links a:hover{
+    opacity:1;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:950px){
+
+    .menu-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .delivery-inner{
+        grid-template-columns:1fr;
+        gap:45px;
+    }
+
+    .reviews-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:800px){
+
+    nav{
+        padding:18px 5%;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .logo{
+        font-size:24px;
+    }
+
+    .hero{
+        min-height:90vh;
+    }
+
+    .hero-content{
+        width:90%;
+    }
+
+    .hero h1{
+        font-size:62px;
+    }
+
+    section{
+        padding:80px 6%;
+    }
+
+    .about,
+    .visit{
+        grid-template-columns:1fr;
+    }
+
+    .about-image{
+        height:400px;
+    }
+
+    .menu-grid{
+        grid-template-columns:1fr;
+    }
+
+    .featured-heading{
+        display:block;
+    }
+
+    .gallery{
+        grid-template-columns:1fr;
+    }
+
+    .gallery-main{
+        height:400px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .form-group.full{
+        grid-column:auto;
+    }
+
+    .booking{
+        padding:28px;
+    }
+
+    .footer-inner{
+        flex-direction:column;
+    }
+
+    .menu-modal{
+        padding:0;
+    }
+
+    .menu-modal-inner{
+        width:100%;
+        height:100%;
+    }
+
+    .menu-modal-header{
+        padding:20px;
+    }
+
+    .menu-modal-header h2{
+        font-size:30px;
+    }
+
+    .menu-search,
+    .category-tabs,
+    .menu-content{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    .full-menu-item{
+        gap:15px;
+    }
+}
+
+@media(max-width:600px){
+
+    .food-image{
+        height:250px;
+    }
+
+    .full-menu-cta{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .delivery-section{
+        padding:80px 6%;
+    }
+
+    .stats{
+        gap:10px;
+    }
+
+    .stat-number{
+        font-size:28px;
+    }
+
+    .review-card{
+        padding:24px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav id="navbar">
+
+    <a href="#" class="logo">KAPAI</a>
+
+    <div class="nav-links">
+        <a href="#story">Story</a>
+        <a href="#menu">Menu</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#visit">Visit</a>
+    </div>
+
+    <a href="#reserve" class="nav-button">Book a Table</a>
+
+</nav>
+
+
+<!-- ================= HERO ================= -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="kicker">
+            COFFEE HOUSE & BISTRO · KANPUR
+        </div>
+
+        <h1>
+            Coffee.<br>
+            Food.<br>
+            Conversations.
+        </h1>
+
+        <p class="hero-text">
+            A neighbourhood bistro in Pandu Nagar for coffee,
+            Italian favourites, easy afternoons and even better evenings.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#reserve" class="btn btn-light">
+                Reserve a Table
+            </a>
+
+            <a href="#menu" class="btn btn-outline">
+                Explore Menu
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= STORY ================= -->
+
+<section id="story">
+
+<div class="container about">
+
+    <div class="about-image"></div>
+
+    <div>
+
+        <div class="eyebrow">
+            The KAPAI feeling
+        </div>
+
+        <h2 class="section-title">
+            Made for lingering.
+        </h2>
+
+        <p class="description">
+            KAPAI is a coffee house and bistro in Pandu Nagar,
+            Kanpur — a place for coffee dates, long lunches,
+            casual dinners and conversations that last a little longer.
+        </p>
+
+        <div class="stats">
+
+            <div>
+                <span class="stat-number">4.5</span>
+                <span class="stat-label">Dining rating</span>
+            </div>
+
+            <div>
+                <span class="stat-number">4.1</span>
+                <span class="stat-label">Delivery rating</span>
+            </div>
+
+            <div>
+                <span class="stat-number">₹1,200</span>
+                <span class="stat-label">Approx. for two</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= FEATURED MENU ================= -->
+
+<section class="menu-section" id="menu">
+
+<div class="container">
+
+    <div class="featured-heading">
+
+        <div>
+
+            <div class="eyebrow">
+                Food & Drink
+            </div>
+
+            <h2 class="section-title">
+                A taste of KAPAI.
+            </h2>
+
+            <p class="description">
+                A few favourites from the KAPAI menu.
+                Want the complete selection? Explore the full menu.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="menu-grid">
+
+
+        <!-- 1 CAPPUCCINO -->
+
+        <article class="menu-card food-card">
+
+            <div class="food-image">
+
+                <img
+                    src="https://b.zmtcdn.com/data/pictures/chains/7/21197747/e18cb1c06c33bcc12f81952090a3ee34.jpg?fit=around%7C800%3A800&crop=800%3A800%3B%2A%2C%2A"
+                    alt="Cappuccino"
+                    loading="lazy"
+                >
+
+            </div>
+
+            <div class="food-card-content">
+
+                <span class="menu-number">
+                    01 · COFFEE
+                </span>
+
+                <h3>
+                    Cappuccino
+                </h3>
+
+                <div class="food-bottom">
+                    <span class="menu-price">₹159</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 2 FRIES -->
+
+        <article class="menu-card food-card">
+
+            <div class="food-image">
+
+                <img
+                    src="https://b.zmtcdn.com/data/dish_photos/905/d53a7c94e1055225e1cdb2009c63c905.jpeg?fit=around%7C800%3A800&crop=800%3A800%3B%2A%2C%2A"
+                    alt="Classic Crinkle Fries"
+                    loading="lazy"
+                >
+
+            </div>
+
+            <div class="food-card-content">
+
+                <span class="menu-number">
+                    02 · SMALL BITES
+                </span>
+
+                <h3>
+                    Classic Crinkle Fries
+                </h3>
+
+                <div class="food-bottom">
+                    <span class="menu-price">₹99</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 3 CREAMY PEPPER CHICKEN -->
+
+        <article class="menu-card food-card">
+
+            <div class="food-image">
+
+                <img
+                    src="https://b.zmtcdn.com/data/dish_photos/a6a/87e5e92b89fb56310e935fac54411a6a.jpeg?fit=around%7C800%3A800&crop=800%3A800%3B%2A%2C%2A"
+                    alt="Creamy Pepper Chicken"
+                    loading="lazy"
+                >
+
+            </div>
+
+            <div class="food-card-content">
+
+                <span class="menu-number">
+                    03 · SPECIALS
+                </span>
+
+                <h3>
+                    Creamy Pepper Chicken
+                </h3>
+
+                <div class="food-bottom">
+                    <span class="menu-price">₹379</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 4 BURGER -->
+
+        <article class="menu-card food-card">
+
+            <div class="food-image">
+
+                <img
+                    src="https://b.zmtcdn.com/data/dish_photos/2f4/f679a7fd20e1ab2f8f71979922aad2f4.jpeg?fit=around%7C800%3A800&crop=800%3A800%3B%2A%2C%2A"
+                    alt="Veg Aloo Tikki Burger"
+                    loading="lazy"
+                >
+
+            </div>
+
+            <div class="food-card-content">
+
+                <span class="menu-number">
+                    04 · BURGERS
+                </span>
+
+                <h3>
+                    Veg Aloo Tikki Burger
+                </h3>
+
+                <div class="food-bottom">
+                    <span class="menu-price">₹159</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 5 RICE BOWL -->
+
+        <article class="menu-card food-card">
+
+            <div class="food-image">
+
+                <img
+                    src="https://b.zmtcdn.com/data/dish_photos/441/14c1fc108bf70bcad5192a1c583bd441.jpeg?fit=around%7C800%3A800&crop=800%3A800%3B%2A%2C%2A"
+                    alt="Veg Pesto Rice Bowl"
+                    loading="lazy"
+                >
+
+            </div>
+
+            <div class="food-card-content">
+
+                <span class="menu-number">
+                    05 · RICE BOWLS
+                </span>
+
+                <h3>
+                    Veg Pesto Rice Bowl
+                </h3>
+
+                <div class="food-bottom">
+                    <span class="menu-price">₹419</span>
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- 6 ALFREDO -->
+
+        <article class="menu-card food-card">
+
+            <div class="food-image">
+
+                <img
+                    src="https://b.zmtcdn.com/data/dish_photos/eab/18c722cd0b110b0454c22b3da5bf6eab.jpeg?fit=around%7C800%3A800&crop=800%3A800%3B%2A%2C%2A"
+                    alt="Creamy Alfredo"
+                    loading="lazy"
+                >
+
+            </div>
+
+            <div class="food-card-content">
+
+                <span class="menu-number">
+                    06 · PASTA
+                </span>
+
+                <h3>
+                    Creamy Alfredo
+                </h3>
+
+                <div class="food-bottom">
+                    <span class="menu-price">₹349</span>
+                </div>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+    <div class="full-menu-cta">
+
+        <p>
+            Explore everything from breakfast and small bites to pasta,
+            pizza, coffee, frappes and KAPAI specials.
+        </p>
+
+        <button
+            class="full-menu-button"
+            onclick="openMenu()"
+        >
+            Explore the Full Menu →
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= ONLINE DELIVERY ================= -->
+
+<section class="delivery-section">
+
+<div class="container delivery-inner">
+
+    <div>
+
+        <div class="eyebrow" style="color:#c69a76;">
+            At Home
+        </div>
+
+        <h2 class="section-title">
+            KAPAI,<br>
+            delivered.
+        </h2>
+
+        <p class="description">
+            Craving your KAPAI favourites at home?
+            Order online through your preferred delivery platform.
+        </p>
+
+    </div>
+
+
+    <div class="delivery-buttons">
+
+        <a
+            class="delivery-card zomato"
+            href="https://www.google.com/url?sa=t&source=web&rct=j&url=https://www.zomato.com/kanpur/kapai-coffee-house-bistro-lajpat-nagar/order?v%3Do2&ved=2ahUKEwjji-ys4ZGXAxVL3zgGHR0KLt8QsdIMegQIBhAI&opi=89978449&usg=AOvVaw14Q9UxY_tZuWvKboFdSimX"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div>
+
+                <span class="delivery-label">
+                    ORDER ONLINE
+                </span>
+
+                <strong>
+                    Zomato
+                </strong>
+
+                <small>
+                    Delivery fee ₹40–₹60 · Service fee may apply
+                </small>
+
+            </div>
+
+            <span class="delivery-arrow">
+                ↗
+            </span>
+
+        </a>
+
+
+        <a
+            class="delivery-card swiggy"
+            href="https://www.swiggy.com/city/kanpur/kapai-ashok--nagar----harsh-nagar-kakadeo-rest1094785?utm_source=GooglePlaceOrder&utm_campaign=GoogleMap&is_retargeting=true&media_source=GooglePlaceOrder"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+
+            <div>
+
+                <span class="delivery-label">
+                    ORDER ONLINE
+                </span>
+
+                <strong>
+                    Swiggy
+                </strong>
+
+                <small>
+                    Fees may apply
+                </small>
+
+            </div>
+
+            <span class="delivery-arrow">
+                ↗
+            </span>
+
+        </a>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= REVIEWS ================= -->
+
+<section class="reviews-section" id="reviews">
+
+<div class="container">
+
+    <div class="eyebrow">
+        Guest Reviews
+    </div>
+
+    <h2 class="section-title">
+        What guests say.
+    </h2>
+
+    <p class="description">
+        Real experiences from guests who have visited KAPAI.
+    </p>
+
+
+    <div class="reviews-grid">
+
+
+        <!-- REVIEW 1 -->
+
+        <article class="review-card">
+
+            <div class="review-top">
+
+                <div class="review-avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <h3>
+                        Aparna V
+                    </h3>
+
+                    <div class="review-stars">
+                        ★★★★☆
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p class="review-text">
+                Great food, ambience was okayish. We had crispy corn as starters
+                (4/5), chilly mushroom were yum (5/5) sauce was just perfect.
+                Also ordered passion fruit mojito (3/5), it didn't tasted real..
+                it was full of syrup. Italian cuisine was perfect, we loved Pink
+                Sauce Pasta (5/5) and had Farmhouse pizza which was thin crust.
+                Pizza was 3/5. Very less toppings and cheese and it was a small
+                pizza and it wasn't fulfilling. Maggi Ramen was unexpectedly
+                slurping & yummy. (4/5) The veg platter with rice was absolutely
+                disappointing, saute vegetables were salty. And there weren't
+                any gravy for rice, panner in it didn't have any flavour.
+                We couldn't even complete it. We ended with blueberry cheese cake,
+                it was delicious. Highly recommend. Overall we felt items were
+                pricey, and the quantity was comparatively less. But definitely
+                a cool place for a friend gathering. Would have been cool if there
+                would have been background music. Good for a friend gathering.
+            </p>
+
+        </article>
+
+
+        <!-- REVIEW 2 -->
+
+        <article class="review-card">
+
+            <div class="review-top">
+
+                <div class="review-avatar">
+                    K
+                </div>
+
+                <div>
+
+                    <h3>
+                        Kratika Chowdhary
+                    </h3>
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p class="review-text">
+                This coffee shop truly feels like a warm hug in a cup. The ambience
+                is cozy and inviting, making it the perfect place to unwind or spend
+                quality time with friends. The service is wonderful — everyone greets
+                you with genuine smiles and kindness. What makes this place even more
+                special is that it’s pet-friendly, so your furry companions are just
+                as welcome as you are. The owner has such a beautiful heart — he
+                personally takes care of his guests and makes sure everyone feels
+                comfortable and cared for. With great coffee, good vibes, and a loving
+                atmosphere, this isn’t just a café — it’s a place that makes you feel
+                at home.
+            </p>
+
+        </article>
+
+
+        <!-- REVIEW 3 -->
+
+        <article class="review-card">
+
+            <div class="review-top">
+
+                <div class="review-avatar">
+                    P
+                </div>
+
+                <div>
+
+                    <h3>
+                        PRATINAV Mishra
+                    </h3>
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p class="review-text">
+                A top notch cafe. We first ordered a hot chocolate, an Irish coffee
+                and a cappachino with egg sandwich and millet bhel. The millet bhel
+                was so so but the Irish coffee was exceptional and I'll happily
+                declare it beverage of the day. Cappachino was good and hot chocolate
+                was at par, no issues at all. Egg sandwich was handlickingly good!!
+                Then we ordered a thin crust farmhouse pizza, had better before so
+                won't recommend. We had thai curry with rice it was good enough to be
+                ordered again and cheese n creame spheggeti was okayish. I must put
+                a special mention of the service, it was good and the ambience was
+                soothing, peaceful. If you are looking for a cafe to cherish a cup
+                of coffee while working on your laptop this is a place for you.
+                Highly Recommended!!
+            </p>
+
+        </article>
+
+
+        <!-- REVIEW 4 -->
+
+        <article class="review-card">
+
+            <div class="review-top">
+
+                <div class="review-avatar">
+                    M
+                </div>
+
+                <div>
+
+                    <h3>
+                        Mahak Agarwal
+                    </h3>
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p class="review-text">
+                Best place to visit with your friends and family ❤️ the staff and
+                food was the best. As well as I asked for a take away which dish
+                was not available at that particular time but still they offered me.
+                Thank you I loved it.
+            </p>
+
+        </article>
+
+
+        <!-- REVIEW 5 -->
+
+        <article class="review-card">
+
+            <div class="review-top">
+
+                <div class="review-avatar">
+                    S
+                </div>
+
+                <div>
+
+                    <h3>
+                        Shretima Gangwar
+                    </h3>
+
+                    <div class="review-stars">
+                        ★★★★★
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p class="review-text">
+                An absolute great addition to our city. Kanpur was in desperate need
+                of a good coffee shop that focuses on coffee as well the food that they
+                offer (and not over pricing everything!) Loved how their menu is
+                versatile and the chef is doing a great job! The space is modern,
+                chic & minimal. Staff is well-trained and friendly. Will definitely
+                visit again soon to try out more things on their menu.
+            </p>
+
+        </article>
+
+
+        <!-- REVIEW 6 -->
+
+        <article class="review-card">
+
+            <div class="review-top">
+
+                <div class="review-avatar">
+                    N
+                </div>
+
+                <div>
+
+                    <h3>
+                        Nero Frost
+                    </h3>
+
+                    <div class="review-stars">
+                        ★★★★☆
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p class="review-text">
+                The Coffee was nice. The food is hit or miss. The Nacho bhel gave me
+                hypertension, allegedly.
+            </p>
+
+        </article>
+
+
+        <!-- REVIEW 7 -->
+
+        <article class="review-card">
+
+            <div class="review-top">
+
+                <div class="review-avatar">
+                    P
+                </div>
+
+                <div>
+
+                    <h3>
+                        Palak Chaurasia
+                    </h3>
+
+                    <div class="review-stars">
+                        ★★★☆☆
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p class="review-text">
+                It's an average cafe— aesthetically pleasing, but the self-service
+                setup is a big turn-off for me. Hopefully, they’ll change that soon!
+                Honestly, I enjoyed the food experience; I didn’t order much, but
+                what I had was quite good. However, the seating arrangements could
+                be improved, as the chairs were too close together, making it
+                difficult to move around.
+            </p>
+
+        </article>
+
+
+        <!-- REVIEW 8 -->
+
+        <article class="review-card">
+
+            <div class="review-top">
+
+                <div class="review-avatar">
+                    M
+                </div>
+
+                <div>
+
+                    <h3>
+                        Manish Raj Pal
+                    </h3>
+
+                    <div class="review-stars">
+                        ★★★★☆
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p class="review-text">
+                Nestled in a charming corner location, Kapai Coffee House and Bistro
+                offers a delightfully authentic café experience that strikes the
+                perfect balance between casual comfort and quality craftsmanship.
+                Upon entering, you’re greeted by the rich aroma of freshly roasted
+                beans and the gentle hum of satisfied customers enjoying their morning
+                ritual. The coffee is genuinely excellent – each cup is expertly
+                brewed with beans that showcase a smooth, well-balanced flavor profile
+                without the bitter bite that plagues many establishments. Their
+                baristas clearly understand their craft, consistently delivering
+                perfectly extracted espresso shots and silky milk foam that creates
+                beautiful latte art. The bistro menu complements the coffee program
+                beautifully, featuring fresh pastries, hearty sandwiches, and light
+                salads that cater to various dietary preferences. The atmosphere feels
+                warm and inviting, with comfortable seating arrangements that work
+                equally well for solo laptop sessions or intimate conversations with
+                friends. Service is notably friendly and efficient, with staff members
+                who genuinely seem to care about the customer experience. While prices
+                are reasonable for the quality delivered, the portions are generous
+                and satisfying. Kapai Coffee House and Bistro successfully creates the
+                kind of neighborhood gathering place that communities treasure – a spot
+                where excellent coffee meets genuine hospitality in a welcoming
+                environment.
+            </p>
+
+        </article>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= GALLERY ================= -->
+
+<section id="gallery">
+
+<div class="container">
+
+    <div class="eyebrow">
+        The Space
+    </div>
+
+    <h2 class="section-title">
+        Come for the coffee.<br>
+        Stay for the atmosphere.
+    </h2>
+
+    <div class="gallery">
+
+        <div class="gallery-main"></div>
+
+        <div class="gallery-side">
+
+            <div class="gallery-small one"></div>
+
+            <div class="gallery-small two"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= VISIT + RESERVATION ================= -->
+
+<section id="visit" class="location-section">
+
+<div class="container visit">
+
+    <div>
+
+        <div class="eyebrow">
+            Come By
+        </div>
+
+        <h2 class="section-title">
+            See you at KAPAI.
+        </h2>
+
+        <p class="description">
+            Find us in Pandu Nagar, Kanpur.
+            Come in for coffee, food, conversations
+            and a little time away from the rush.
+        </p>
+
+
+        <div class="location-card">
+
+            <div class="location-label">
+                KAPAI Coffee House & Bistro
+            </div>
+
+            <div class="address">
+                117/H-1/62A,<br>
+                Pandu Nagar,<br>
+                Kanpur, Uttar Pradesh
+            </div>
+
+            <a
+                class="map-button"
+                href="https://www.google.com/maps/search/?api=1&query=117%2FH-1%2F62A%2C%20Pandu%20Nagar%2C%20Kanpur"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                Open in Google Maps →
+            </a>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="info-item">
+                <span>Hours</span>
+                <strong>10:30 AM – 12 Midnight</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Late Night</span>
+                <strong>12 Midnight – 1 AM</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Call</span>
+                <strong>+91 98392 70027</strong>
+            </div>
+
+            <div class="info-item">
+                <span>Facilities</span>
+                <strong>
+                    Indoor Seating · Takeaway · Home Delivery ·
+                    Valet Parking · Digital Payments
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RESERVATION -->
+
+    <div class="booking" id="reserve">
+
+        <h3>
+            Book a Table
+        </h3>
+
+        <p class="booking-subtitle">
+            Send a reservation request to KAPAI.
+        </p>
+
+        <form id="bookingForm">
+
+            <div class="form-grid">
+
+                <div class="form-group">
+
+                    <label>Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Your name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Phone</label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Phone number"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Date</label>
+
+                    <input
+                        type="date"
+                        id="date"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Time</label>
+
+                    <input
+                        type="time"
+                        id="time"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Guests</label>
+
+                    <select id="guests">
+
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6+</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Special Request
+                    </label>
+
+                    <textarea
+                        id="note"
+                        placeholder="Birthday, special occasion, seating request..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="submit"
+                type="submit"
+            >
+                Send Reservation Request
+            </button>
+
+            <div
+                class="success"
+                id="success"
+            >
+                Reservation details prepared.
+                The restaurant can confirm availability directly.
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- ================= FULL MENU MODAL ================= -->
+
+<div
+    class="menu-modal"
+    id="menuModal"
+>
+
+    <div class="menu-modal-inner">
+
+        <div class="menu-modal-header">
+
+            <h2>
+                KAPAI Menu
+            </h2>
+
+            <button
+                class="close-menu"
+                onclick="closeMenu()"
+                aria-label="Close menu"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="menu-search">
+
+            <input
+                type="text"
+                id="menuSearch"
+                placeholder="Search pasta, coffee, pizza, fries..."
+                oninput="renderMenu()"
+            >
+
+        </div>
+
+
+        <div
+            class="category-tabs"
+            id="categoryTabs"
+        ></div>
+
+
+        <div
+            class="menu-content"
+            id="menuContent"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="footer-inner">
+
+    <div>
+
+        <div class="footer-logo">
+            KAPAI
+        </div>
+
+        <div class="footer-description">
+            Coffee House & Bistro · Pandu Nagar, Kanpur
+        </div>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="#story">
+            Story
+        </a>
+
+        <a href="#menu">
+            Menu
+        </a>
+
+        <a href="#reviews">
+            Reviews
+        </a>
+
+        <a href="#reserve">
+            Reservations
+        </a>
+
+    </div>
+
+</div>
+
+</footer>
+
+
+<script>
+
+/* ================= NAVBAR ================= */
+
+window.addEventListener("scroll",function(){
+
+    const nav=document.getElementById("navbar");
+
+    if(window.scrollY>40){
+        nav.classList.add("scrolled");
+    }else{
+        nav.classList.remove("scrolled");
+    }
+
+});
+
+
+/* ================= FULL MENU DATA ================= */
+
+const menuData = [
+
+{
+category:"Kuch Bhi Chalega (Small Bites)",
+items:[
+
+["Classic Fries","₹99","Add on: Peri Peri ₹30"],
+["Tomato Garlic & Basil","₹219",""],
+["Chicken Keema","₹249",""],
+["Classic Garlic Bread","₹119",""],
+["Cheesy Garlic Bread","₹159",""],
+["Chilly Cheese Garlic Bread","₹179",""],
+["Cheese Corn Garlic Bread","₹199",""],
+["Pull Apart Cheesy Garlic Bread","₹249",""],
+["Khakra Nachos","₹149","Crispy Indian flatbread chips as nachos with in-house salsa, black olives & parsley"],
+["Classic Nachos","₹149","Tortilla chips served with salsa"],
+["Cheesy Nachos","₹199","Tortilla chips covered in melted cheese sauce"],
+["Loaded Nachos","₹249","Tortilla chips topped with cheese, salsa, sour cream & veggies"],
+["Indian Onion Fritters","₹149","Onion juliennes dipped in chickpea flour batter served with mint sauce"],
+["Potato Patato","₹199","Herbed potato wedges baked with melted cheese on top"],
+["Crispy Corn","₹229","Deep fried corn kernels with a crunchy coating tossed in veggies"],
+["Millet Bhel","₹249","A healthy twist of traditional bhelpuri using assorted millet puffs"],
+["Nachos Bhel","₹249","Fusion dish combining nachos with Indian bhel puri"],
+["KFC (Kapai Fried Chicken)","₹299","House special crispy fried chicken"]
+
+]},
+
+{
+category:"All Day Breakfast",
+items:[
+
+["Butter Toast","₹69",""],
+["Mixed Jam Toast","₹89",""],
+["PB&J Toast","₹149",""],
+["Pesto Tomato Toastie","₹199",""],
+["Baked Bean Toastie","₹229",""],
+["Mushroom Garlic Toastie","₹249",""],
+["Avocado Toastie","₹349","Whipped cream & salsa or Khasta avocado toastie"],
+["Sunny Side Up","₹149","Standard serving of 2 eggs with 1 slice of jumbo bread"],
+["Anda Bhurji","₹149","Standard serving of 2 eggs with 1 slice of jumbo bread"],
+["Masala Omelette","₹149","Standard serving of 2 eggs with 1 slice of jumbo bread"],
+["Anda Ghotala With Pav","₹179","Pan tossed boiled eggs with house Indian masala served with pav"],
+["Eggs Kejriwal","₹199","Sunny side up eggs with cheese & green chillies on the base of buns"],
+["Jaipuri Eggs","₹199","Sunny side up eggs placed on authentic Jaipuri garlic chutney on the base of buns"],
+["Cream & Shroom Eggs","₹229","Omelette stuffed with rich & creamy mushroom fillings served with toast"],
+["Chicken Keema Omelette","₹249","Omelette stuffed with special chicken keema masala served with toast"],
+["Honey Glazed French Toast With Whipped Cream & Seasonal Fruits","₹299","Toast coated with eggs and topped with fruits & whipped cream"]
+
+]},
+
+{
+category:"Salads, Bowls & Epic Wraps",
+items:[
+
+["Eat Your Greens","₹249","A refreshing mix of crisp greens and vibrant veggies tossed in vinaigrette dressing"],
+["Chickpea Salad","₹299","Fresh boiled chickpeas tossed with crisp vegetables and herbs in a zesty dressing"],
+["Angrezi Cottage Cheese","₹299","Indian cottage cheese or tofu with assorted veggies in a fusion western dressing"],
+["Frootie Patootie","₹329","A fruity explosion of flavours with fresh & seasonal fruits"],
+["Desi Chicken Salad","₹349","A hearty salad with tender chicken and Indian spices tossed in mint & mayo dressing"],
+["Power House","₹349","Cottage cheese, chickpeas, beans, sprouts and assorted veggies tossed in vinaigrette dressing"],
+["Almond Pesto Chicken","₹399","Grilled chicken tossed in rich almond pesto sauce over fresh greens"],
+["Blueberry & Mint Smoothie Bowl","₹249","A refreshing blend of blueberries and mint"],
+["Seasonal Fruits & Walnut Smoothie Bowl","₹299","A tropical mix of seasonal fruits and walnuts in a creamy smoothie bowl"],
+["Nutella & Oats Smoothie Bowl","₹349","A comforting blend of Nutella and oats"],
+["Classic Aloo Frankie","₹159","A comforting aloo frankie filled with seasoned potatoes"],
+["Mix Veg","₹179","A wholesome wrap filled with a medley of mixed vegetables"],
+["Paneer Bhurji","₹199","Scrambled paneer spiced to perfection, wrapped in soft bread"],
+["Chicken Keema","₹229","Spicy chicken keema rolled up in a flavorful wrap"],
+["Chicken Shawarma","₹249","Tender chicken shawarma wrapped with fresh veggies and sauce"],
+["Mediterranean Chicken","₹279","Grilled chicken strips with hummus dressing & pickled veggies wrapped in soft bread"]
+
+]},
+
+{
+category:"Pasta's & Pizza",
+items:[
+
+["Pasta De Marinara","₹329","Classic marinara sauce over penne or spaghetti"],
+["Aglio-Olio","₹329","Garlic and olive oil pasta, with your choice of penne or spaghetti"],
+["Cream & Cheese Pasta","₹349","Rich and creamy pasta in your choice of penne or spaghetti"],
+["Pinky Pasta","₹359","Creamy tomato-based pink pasta with penne or spaghetti"],
+["Pesto Besto","₹399","Fresh basil pesto tossed with penne or spaghetti"],
+["Tu Cheese Badi Hai Mast","₹299","A cheesy pizza that's simply irresistible"],
+["Corn-Ion","₹329","Sweet corn and onion topping on a crispy pizza base"],
+["Classic Farmhouse","₹349","Classic veggie-loaded farmhouse pizza"],
+["Pesto Pizza","₹449","Fresh and herbaceous pizza topped with pesto"],
+["PBM (Paneer Butter Masala)","₹449","Fusion pizza with the rich flavours of paneer butter masala"],
+["Peri Peri Paneer","₹399","Spicy peri peri paneer on top of a cheesy pizza"],
+["Chicken Keema","₹499","Spicy chicken keema topping on a crisp pizza base"]
+
+]},
+
+{
+category:"Sub's, Sandwiches & Burgers",
+items:[
+
+["Veggie Sandwich (Not Grilled)","₹169","Fresh coleslaw veggie sandwich, served cold"],
+["Classic Bombay Sandwich","₹189","Potato filling & veggies with classic Bombay flavours"],
+["Egg Sandwich","₹199","Boiled eggs in creamy mustard dressing grilled to perfection"],
+["Spinach Corn Sandwich","₹199","Spinach and sweet corn in a hearty sandwich or sub"],
+["Cheese Mush Sandwich","₹199","Creamy cheese and earthy mushrooms in a satisfying sandwich or sub"],
+["Paneer Tikka Sandwich","₹239","Spiced paneer tikka in a flavorful sandwich or sub"],
+["Mufleta Eggplant Sandwich","₹269","Savory eggplant layered in a Moroccan-inspired mufleta sandwich or sub"],
+["Peri Peri Chicken Sandwich","₹269","Spicy peri peri chicken in a sandwich or sub"],
+["Crispy Chicken Sandwich","₹269","Crunchy and juicy crispy chicken sandwich"],
+["Chicken Keema Sandwich","₹299","Spicy chicken keema stuffed in a soft sandwich or sub"],
+["Baked Chicken Sandwich","₹299","Juicy baked chicken in a wholesome sandwich or sub"],
+["Avocado Sandwich","₹349","Creamy avocado sandwich with house sauces"],
+["Aloo Tiki Taka","₹159","Spiced potato patty burger with a desi twist"],
+["Mushroom Sloppy Joe","₹199","Mushroom-loaded Sloppy Joe"],
+["Peri Peri Paneer","₹229","Spicy and flavorful peri peri paneer burger"],
+["Texes Touch (Veg)","₹229","Loaded burger with Texan barbecue sauce served with nachos"],
+["Krispy Chicken","₹249","Crispy chicken burger, juicy inside and crunchy outside"]
+
+]},
+
+{
+category:"No Sar-Kapai Specials",
+items:[
+
+["Beetroot & Broccoli Crepe","₹249","Healthy and vibrant crepe filled with beetroot and broccoli"],
+["Mushroom & Spinach Crepe","₹249","Savory crepe filled with sauteed mushrooms and spinach"],
+["Chilly Mushroom","₹299","Spicy and tangy mushroom dish"],
+["Pita Pockets With Pickled Veggies","₹299","Tangy pickled veggies tucked inside warm pita pockets"],
+["Twain Mushroom","₹299","A duo of mushrooms cooked to perfection"],
+["Chicken Cabbage Dimsums","₹349","Flavorful chicken and cabbage steamed dim sums"],
+["Cream & Pepper Paneer","₹379","Tender paneer or chicken in a creamy and peppery sauce"],
+["Chilly Hunanian Paneer","₹379","Spicy Hunan-style paneer or chicken dish"],
+["Kao Mo Thai Tofu","₹399","Thai-inspired dish with tofu or chicken and aromatic spices"],
+["Grilled Paneer With Sauteed Veggies","₹399","Grilled paneer served with sauteed veggies and your choice of sauce"],
+["Stir Fried Chicken With Sauteed Veggies","₹399","Tender stir-fried chicken with veggies and your favorite sauce"],
+["Fire Hummus With Pita (Veg)","₹399","Spicy hummus served with warm pita bread & your choice of veg or non-veg filling"],
+["Chicken Supper Platter","₹479","Grilled chicken, veggies and mashed potatoes glazed with honey BBQ sauce"],
+["Grilled Fish With Sauteed Veggies","₹499","Choice of Chilly Garlic, Lemon Butter or Honey Mustard"],
+["Classic Fried Rice (Veg)","₹249",""],
+["Noodle Bowl (Veg)","₹299","Choice of Chilly Oil, Hakka or Garlic"],
+["Asian Bowl (Veg)","₹349","Asian-inspired rice bowl with veggies or meat"],
+["Burrito Bowl (Veg)","₹379","Hearty burrito bowl with your choice of veggies or meat"],
+["Peri Peri Grilled Paneer Rice Bowl","₹419","Spicy peri peri grilled paneer over rice"],
+["Green Thai Curry Rice Bowl (Veg)","₹379","Fragrant green Thai curry over rice, with veg or non-veg options"]
+
+]},
+
+{
+category:"Hot White Coffees",
+items:[
+
+["Macchiato","₹119","Shot of espresso with a mark of milk foam"],
+["Cortado","₹139","Shot of espresso with equal amount of steamed milk"],
+["Cappuccino","₹159","Espresso with equal amount of steamed milk and milk foam"],
+["Cafe Latte","₹169","Espresso with steamed milk and a mark of milk foam"],
+["Flat White","₹179","Shot of espresso topped with steamed milk"],
+["Cafe Mocha","₹189","Espresso mixed with chocolate and topped with steamed milk"],
+["Spiced Mocha","₹199","Cafe mocha swirled with freshly ground black pepper"],
+["Cinnamon Latte","₹199","Cafe latte swirled and dusted with cinnamon powder"]
+
+]},
+
+{
+category:"Hot Black Coffees",
+items:[
+
+["Single Shot Espresso","₹59","30ml pure coffee extract"],
+["Double Shot Espresso","₹89","60ml pure coffee extract"],
+["Americano","₹129","Espresso shot topped with water"],
+["Long Black","₹139","Water topped with espresso shot, stronger & bolder"]
+
+]},
+
+{
+category:"Tea",
+items:[
+
+["Black Tea","₹69",""],
+["Masala Tea","₹89",""],
+["Green Tea (Twinings)","₹129","Regular / Lemon & Mint / Ginger Honey / Honey Lemon"],
+["Brewed Tea","₹199","Hibiscus / Lavender / Chamomile / Blue Tea. Flavours subject to availability"]
+
+]},
+
+{
+category:"Hot Chocolate",
+items:[
+["Hot Chocolate","₹149","Add marshmallow ₹50"]
+]},
+
+{
+category:"Iced Coffees",
+items:[
+
+["Iced Cappuccino","₹169","Double shot espresso shaken with ice, equal amount of milk and milk foam"],
+["Iced Latte","₹179","Milk and ice with a double shot of espresso"],
+["Iced Vietnamese","₹189","Condensed milk topped with milk and double shot espresso"],
+["Iced Mocha","₹189","Double shot mixed with chocolate sauce over ice and milk"]
+
+]},
+
+{
+category:"Iced Black Coffees",
+items:[
+
+["Iced Americano","₹129","Espresso shot topped with water & ice"],
+["Mint Iced Americano","₹159","Lemon and mint muddled with espresso, water & ice"],
+["Citrus Iced Americano","₹159","Espresso mixed with orange juice, water & ice"],
+["Berry Iced Americano","₹159","Espresso mixed with cranberry juice, water & ice"],
+["Cold Brew On Ice","₹179","Cold brew steeped for a minimum of 18 hours. Milk ₹30 / Condensed Milk ₹50"],
+["Cold Brew With Tonic","₹249","Classic cold brew topped with tonic & ice"],
+["Orange Zesty Cold Brew","₹219","Classic cold brew infused with orange juice"],
+["Cranberry Cold Brew","₹219","Classic cold brew infused with cranberry juice"]
+
+]},
+
+{
+category:"Kapai Specials",
+items:[
+
+["Iced Coconut Vietnamese","₹219","Vietnamese coffee with creamy coconut milk over ice"],
+["Black Mojito","₹219","Bold espresso, zesty lime and mint"],
+["Zesty Iced Mocha","₹249","Iced mocha with a hint of citrus"],
+["Pomegranate Cold Brew","₹249","Cold brew mixed with muddled pomegranate & house syrup"],
+["Spiced Mocha","₹199","Cafe mocha spiced with black pepper"],
+["Virgin Irish Coffee","₹249","Double shot espresso infused with Irish syrup and whipping cream"],
+["Tiramisu Cortado","₹219","Tiramisu-infused espresso with steamed milk, whipped cream and chocolate dust"],
+["Inverted Cappuccino","₹199","Vanilla-infused espresso with milk foam & steamed milk"]
+
+]},
+
+{
+category:"Slow Brews",
+items:[
+
+["V60 Pour Over","₹199","Clean, bright and delicate flavour profile with light to medium body"],
+["Aeropress","₹219","Full-bodied but clean taste, rich flavour with low acidity"],
+["French Press (Black)","₹239","Full-bodied, rich and robust with deep, bold flavours"]
+
+]},
+
+{
+category:"Frappes",
+items:[
+
+["Classic Cold Coffee","₹189",""],
+["Mint Frappe","₹219",""],
+["Hazelnut Mocha","₹239",""],
+["Salted Caramel","₹239",""],
+["Vanilla Cinnamon","₹239",""],
+["Bronze Frost","₹249",""],
+["Vintage","₹249",""],
+["Jawa Chip","₹249",""]
+
+]},
+
+{
+category:"Thick Shakes",
+items:[
+
+["Oreo","₹229",""],
+["Kitkat","₹229",""],
+["Vanilla","₹229",""],
+["Chocolate","₹229",""],
+["Mango","₹269",""],
+["Banana","₹269",""],
+["Apple","₹269",""],
+["Strawberry","₹269",""],
+["Biscoff","₹289",""],
+["Nutella","₹289",""],
+["Brownie","₹289",""]
+
+]},
+
+{
+category:"Coolers",
+items:[
+
+["Classic Lemon Iced Tea","₹139",""],
+["Sanskari Mojito","₹159",""],
+["Peach Iced Tea","₹159",""],
+["Topic Tropic","₹159",""],
+["Berry & Basil Smash","₹179",""],
+["Passion Fruit Mojito","₹199",""]
+
+]},
+
+{
+category:"Others",
+items:[
+
+["Soft Drink","₹40",""],
+["Mineral Water","₹60",""],
+["Tonic Water","₹60",""],
+["Red Bull","₹125",""],
+["Kombuchas","₹140",""]
+
+]}
+
+];
+
+
+/* ================= MENU FUNCTIONS ================= */
+
+let selectedCategory="All";
+
+
+function openMenu(){
+
+    document
+        .getElementById("menuModal")
+        .classList
+        .add("active");
+
+    document.body.classList.add("menu-open");
+
+    buildCategoryTabs();
+
+    renderMenu();
+
+}
+
+
+function closeMenu(){
+
+    document
+        .getElementById("menuModal")
+        .classList
+        .remove("active");
+
+    document.body.classList.remove("menu-open");
+
+}
+
+
+document
+    .getElementById("menuModal")
+    .addEventListener("click",function(event){
+
+        if(event.target===this){
+            closeMenu();
+        }
+
+    });
+
+
+document.addEventListener("keydown",function(event){
+
+    if(event.key==="Escape"){
+        closeMenu();
+    }
+
+});
+
+
+function buildCategoryTabs(){
+
+    const tabs=document.getElementById("categoryTabs");
+
+    tabs.innerHTML="";
+
+
+    const allButton=document.createElement("button");
+
+    allButton.className=
+        "category-tab"+
+        (selectedCategory==="All" ? " active":"");
+
+    allButton.textContent="All";
+
+    allButton.onclick=function(){
+        filterCategory("All",this);
+    };
+
+    tabs.appendChild(allButton);
+
+
+    menuData.forEach(section=>{
+
+        const button=document.createElement("button");
+
+        button.className=
+            "category-tab"+
+            (selectedCategory===section.category ? " active":"");
+
+        button.textContent=section.category;
+
+        button.onclick=function(){
+            filterCategory(section.category,this);
+        };
+
+        tabs.appendChild(button);
+
+    });
+
+}
+
+
+function filterCategory(category,button){
+
+    selectedCategory=category;
+
+    document
+        .querySelectorAll(".category-tab")
+        .forEach(tab=>{
+            tab.classList.remove("active");
+        });
+
+    button.classList.add("active");
+
+    renderMenu();
+
+}
+
+
+function renderMenu(){
+
+    const container=document.getElementById("menuContent");
+
+    const search=document
+        .getElementById("menuSearch")
+        .value
+        .toLowerCase()
+        .trim();
+
+    container.innerHTML="";
+
+    let totalResults=0;
+
+
+    menuData.forEach(section=>{
+
+        if(
+            selectedCategory!=="All" &&
+            selectedCategory!==section.category
+        ){
+            return;
+        }
+
+
+        const filteredItems=section.items.filter(item=>
+
+            (
+                item[0]+" "+
+                item[1]+" "+
+                item[2]
+            )
+            .toLowerCase()
+            .includes(search)
+
+        );
+
+
+        if(filteredItems.length===0){
+            return;
+        }
+
+
+        totalResults+=filteredItems.length;
+
+
+        const category=document.createElement("div");
+
+        category.className="menu-category";
+
+
+        const heading=document.createElement("h3");
+
+        heading.textContent=section.category;
+
+        category.appendChild(heading);
+
+
+        filteredItems.forEach(item=>{
+
+            const row=document.createElement("div");
+
+            row.className="full-menu-item";
+
+
+            const info=document.createElement("div");
+
+            info.className="item-info";
+
+
+            const name=document.createElement("div");
+
+            name.className="item-name";
+
+            name.textContent=item[0];
+
+            info.appendChild(name);
+
+
+            if(item[2]){
+
+                const description=document.createElement("div");
+
+                description.className="item-description";
+
+                description.textContent=item[2];
+
+                info.appendChild(description);
+
+            }
+
+
+            const price=document.createElement("div");
+
+            price.className="item-price";
+
+            price.textContent=item[1];
+
+
+            row.appendChild(info);
+
+            row.appendChild(price);
+
+            category.appendChild(row);
+
+        });
+
+
+        container.appendChild(category);
+
+    });
+
+
+    if(totalResults===0){
+
+        container.innerHTML=
+            '<div class="no-results">No menu items found.</div>';
+
+    }
+
+}
+
+
+/* ================= RESERVATION ================= */
+
+document
+    .getElementById("bookingForm")
+    .addEventListener("submit",function(event){
+
+        event.preventDefault();
+
+
+        const name=
+            document.getElementById("name").value;
+
+        const phone=
+            document.getElementById("phone").value;
+
+        const date=
+            document.getElementById("date").value;
+
+        const time=
+            document.getElementById("time").value;
+
+        const guests=
+            document.getElementById("guests").value;
+
+        const note=
+            document.getElementById("note").value;
+
+
+        /*
+         * Reservation email has intentionally
+         * been left exactly as in the previous version.
+         */
+
+        const restaurantEmail=
+            "REPLACE_WITH_KAPAI_EMAIL";
+
+
+        const subject=
+            encodeURIComponent(
+                "KAPAI Table Reservation Request"
+            );
+
+
+        const body=
+            encodeURIComponent(
+
+`KAPAI TABLE RESERVATION
+
+Name: ${name}
+Phone: ${phone}
+Date: ${date}
+Time: ${time}
+Guests: ${guests}
+
+Special Request:
+${note || "None"}`
+
+            );
+
+
+        if(
+            restaurantEmail===
+            "REPLACE_WITH_KAPAI_EMAIL"
+        ){
+
+            alert(
+                "The reservation form is working. Add KAPAI's real reservation email before launch."
+            );
+
+        }else{
+
+            window.location.href=
+                `mailto:${restaurantEmail}?subject=${subject}&body=${body}`;
+
+        }
+
+
+        document
+            .getElementById("success")
+            .style.display="block";
+
+    });
+
+</script>
+
+</body>
+</html>
